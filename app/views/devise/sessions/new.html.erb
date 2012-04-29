@@ -1,28 +1,31 @@
-<h2>Sign in in my awesome rails site</h2>
+<div class="auth-container">
+  <div class="devise-auth">
+    <h2>Sign in</h2>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <div><%= f.label :email %>
+      <%= f.email_field :email %></div>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+      <div><%= f.label :password %>
+      <%= f.password_field :password %></div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+      <% if devise_mapping.rememberable? -%>
+        <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+      <% end -%>
 
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
+      <div><%= f.submit "Sign in",:class => 'btn-primary' %></div>
+    <% end %>
 
-<%= render "links" %>
-
-
-
+    <%= render "links" %>
+  </div>
 
 
+
+  <div class="fb-auth">
     <dd><fb:login-button length="long" onlogin="location.href = '/facebook'" scope="email"></fb:login-button></dd>
+  </div>
 
-
+</div>
 
     <script src="http://connect.facebook.net/en_US/all.js"></script>
     <script>
