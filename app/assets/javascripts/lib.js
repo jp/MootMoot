@@ -99,7 +99,7 @@ var PelletStudio = {
 	storedHash:"",
 	start: function(){
 
-
+      if (!$('content')) return;
 
 
 

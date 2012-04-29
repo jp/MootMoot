@@ -8,9 +8,20 @@ body {
 
 .auth-container{
   margin:auto;
-  width:350px;
+  width:700px;
   margin-top:100px;
   text-align: center;
+}
+
+.devise-auth{
+  width:350px;
+  float:left;
+}
+
+.fb-auth{
+  width:300px;
+  float:right;
+  margin-top:100px;
 }
 
 
