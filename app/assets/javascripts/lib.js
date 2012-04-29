@@ -17,8 +17,6 @@ var galleryState = {
 	firstPicture:false,
 	firstPictureInRoll:false,
 	galleryCaption:false,
-	thumbPath:"galleries/self/thumb/",
-	imagePath:"galleries/self/pics/",
 	maxPics:5,
 	rollUnitWidth:124,
 	galleryLength:0,
@@ -413,18 +411,12 @@ After the first 20kms a $1 per km travel charge may apply.\
 			var container = new Element('div', {'class': 'thumb-roll-container','id': 'roll-'+id});//.inject(li);;
 			var link   = new Element('a', {'class': 'thumb-roll','href': '#'+id}).inject(container);
 
-//			var thumb    = new Element('img', {'id':id,'src': "gallery/"+galleryState.thumbPath+ picture.src,'class':'mini','height':'79px'}).inject(link);
 			var thumb = picture.imageDOM.getElementsByTagName('img')[0].clone(true,true).inject(link);
 
 			var footer = new Element('span').inject(thumb,'after');
 			footer.addClass('title');
 //			footer.set('text', title);
 
-/*			var container = new Element('div', {'class': 'thumb-roll-container','id': 'roll-'+id});//.inject(li);;
-			var thumb   = new Element('a', {'id':id	,'class': 'thumb-roll','href': '#'+id}).inject(container);
-			thumb.set('text', "text");
-			thumb.style.background="url(gallery/"+galleryState.thumbPath+ picture.src+")";
-*/
 			var footer = new Element('span').inject(thumb,'after');
 			footer.addClass('title');
 //			footer.set('text', title);
@@ -516,80 +508,6 @@ After the first 20kms a $1 per km travel charge may apply.\
 			}
 		}
 	},
-	getGallery: function(gallery) {
-
-		function parseGallery(request,xmlDoc) {
-			var url = 'gallery/imageData.php5';
-			var last=false;
-			var next=false;
-			var id=false;
-			var title=false;
-			try {
-				if(xmlDoc.hasChildNodes() && xmlDoc.getElementsByTagName("IMAGE").length > 0) {
-
-//					galleryState.galleryCaption = xmlDoc.getElementsByTagName("GALLERY_CAPTION")[0].childNodes[0].nodeValue;
-
-					galleryState.imagePath=xmlDoc.documentElement.getAttribute("imagePath")
-					galleryState.thumbPath=xmlDoc.documentElement.getAttribute("thumbPath")
-
-					images = xmlDoc.getElementsByTagName("IMAGE");
-					galleryState.galleryLength=images.length;
-					for (var i=0;i<images.length;i++) {
-						if (!galleryState.firstPicture) galleryState.firstPicture=id;
-						next=false;
-						id=images[i].getAttribute("id");
-						src=images[i].getElementsByTagName("NAME")[0].childNodes[0].nodeValue;
-						caption=images[i].getElementsByTagName("CAPTION")[0].childNodes[0].nodeValue;
-						
-						galleryStorage[gallery][id]=
-							new galleryUnit(
-								id,
-								addImage(src,id),
-								src,
-								title,
-								caption,
-								last,
-								next,
-								i,
-								gallery
-						)
-						picturesArray[id]=galleryStorage[gallery][id];
-						if (last) galleryStorage[gallery][last].next=id;
-						last=id;
-					}
-				}
-
-//				picturesArray.append(galleryStorage[gallery].flatten());
-
-				if (START==true && gallery == galleryNames.getLast()) {
-					
-					PelletStudio.galleriesLoaded();
-
-				}			
-
-			}
-			catch(e) {alert(e)
-			}
-		}
-
-		if (galleryStorage[gallery]) {
-			galleryState.imagePath="/all/"+gallery+"/images/";
-			galleryState.thumbPath="/all/"+gallery+"/thumbs/";
-			galleryState.galleryLength=galleryStorage[gallery].flatten().length;
-			loadGallery(gallery);
-		} else {
-			galleryStorage[gallery]=new Array();
-	
-			var ajax = new Request( {
-				url : 'gallery/imageData.php5',
-				method: 'get',
-				data: "gallery="+gallery,
-				encoding: 'utf-8',
-				onSuccess: parseGallery
-			}).send();
-		}
-
-	},
 	galleriesLoaded:function() {
 		PelletStudio.hashChanged();
 	},
@@ -597,8 +515,6 @@ After the first 20kms a $1 per km travel charge may apply.\
 	displayGallery:function(galleryName){
 		$('content').empty();
 
-		galleryState.imagePath="/all/"+galleryName+"/images/";
-		galleryState.thumbPath="/all/"+galleryName+"/thumbs/";
 		galleryState.galleryLength=galleryStorage[galleryName].flatten().length;
 		loadGallery(galleryName);
 	}
