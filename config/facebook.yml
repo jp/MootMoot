@@ -1,0 +1,13 @@
+development: &defaults
+  client_id: 365013233534739
+  client_secret: 683613f313f63d78b6a6a80b14721f82
+  scope: email
+
+staging: 
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
