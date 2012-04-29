@@ -1,0 +1,37 @@
+<script></script>
+
+<div id="white-screen">
+	<div id="title"><%=image_tag("JP.jpg")%></div>
+</div>
+<div id="container">
+	<div id="menu">
+		<div class="menu-line">
+			<div class="menu-item" id="main"><a href="#main">JULIEN PELLET</a></div>
+		</div>
+		<div class="hr-line">
+		</div>
+		<div class="menu-line">
+			<div class="menu-item"><a href="#portraits">PEOPLE</a></div>
+		</div>
+		<div class="menu-line">
+			<div class="menu-item"><a href="#nature">LANDSCAPE</a></div>
+		</div>
+		<div class="menu-line">
+			<div class="menu-item"><a href="#wellington">WELLINGTON</a></div>
+		</div>
+		<div class="menu-line">
+			<div class="menu-item"><a href="#fine_art">FINE ART</a></div>
+		</div>
+		<div class="hr-line">
+		</div>
+		<!--div class="menu-line">
+			<div class="menu-item"><a href="#about">ABOUT</a></div>
+		</div-->
+		<div class="menu-line">
+			<div class="menu-item"><a href="#contact">CONTACT</a></div>
+		</div>
+	</div>
+  <%=image_tag("JP-inv.gif")%>
+	<div id="content"/>
+</div>
+

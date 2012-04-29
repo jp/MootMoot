@@ -1,0 +1,13 @@
+class CreatePictures < ActiveRecord::Migration
+  def change
+    create_table :pictures do |t|
+      t.string :url
+      t.string :title
+      t.string :caption
+      t.references :gallery
+
+      t.timestamps
+    end
+    add_index :pictures, :gallery_id
+  end
+end
